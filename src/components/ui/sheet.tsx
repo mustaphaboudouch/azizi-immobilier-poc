@@ -4,19 +4,16 @@ import * as React from 'react';
 import * as SheetPrimitive from '@radix-ui/react-dialog';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { X } from 'lucide-react';
-
 import { cn } from '@/lib/utils';
 
 const Sheet = SheetPrimitive.Root;
 
 const SheetTrigger = SheetPrimitive.Trigger;
 
-const SheetClose = SheetPrimitive.Close;
-
 const SheetPortal = SheetPrimitive.Portal;
 
 const SheetOverlay = React.forwardRef<
-	React.ElementRef<typeof SheetPrimitive.Overlay>,
+	React.ComponentRef<typeof SheetPrimitive.Overlay>,
 	React.ComponentPropsWithoutRef<typeof SheetPrimitive.Overlay>
 >(({ className, ...props }, ref) => (
 	<SheetPrimitive.Overlay
@@ -54,7 +51,7 @@ interface SheetContentProps
 		VariantProps<typeof sheetVariants> {}
 
 const SheetContent = React.forwardRef<
-	React.ElementRef<typeof SheetPrimitive.Content>,
+	React.ComponentRef<typeof SheetPrimitive.Content>,
 	SheetContentProps
 >(({ side = 'right', className, children, ...props }, ref) => (
 	<SheetPortal>
@@ -64,10 +61,6 @@ const SheetContent = React.forwardRef<
 			className={cn(sheetVariants({ side }), className)}
 			{...props}
 		>
-			<SheetPrimitive.Close className='absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary'>
-				<X className='h-4 w-4' />
-				<span className='sr-only'>Close</span>
-			</SheetPrimitive.Close>
 			{children}
 		</SheetPrimitive.Content>
 	</SheetPortal>
@@ -103,7 +96,7 @@ const SheetFooter = ({
 SheetFooter.displayName = 'SheetFooter';
 
 const SheetTitle = React.forwardRef<
-	React.ElementRef<typeof SheetPrimitive.Title>,
+	React.ComponentRef<typeof SheetPrimitive.Title>,
 	React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title>
 >(({ className, ...props }, ref) => (
 	<SheetPrimitive.Title
@@ -115,7 +108,7 @@ const SheetTitle = React.forwardRef<
 SheetTitle.displayName = SheetPrimitive.Title.displayName;
 
 const SheetDescription = React.forwardRef<
-	React.ElementRef<typeof SheetPrimitive.Description>,
+	React.ComponentRef<typeof SheetPrimitive.Description>,
 	React.ComponentPropsWithoutRef<typeof SheetPrimitive.Description>
 >(({ className, ...props }, ref) => (
 	<SheetPrimitive.Description
@@ -125,6 +118,24 @@ const SheetDescription = React.forwardRef<
 	/>
 ));
 SheetDescription.displayName = SheetPrimitive.Description.displayName;
+
+const SheetClose = React.forwardRef<
+	React.ComponentRef<typeof SheetPrimitive.Close>,
+	React.ComponentPropsWithoutRef<typeof SheetPrimitive.Close>
+>(({ className, ...props }, ref) => (
+	<SheetPrimitive.Close
+		ref={ref}
+		className={cn(
+			'absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary',
+			className,
+		)}
+		{...props}
+	>
+		<X className='h-4 w-4' />
+		<span className='sr-only'>Close</span>
+	</SheetPrimitive.Close>
+));
+SheetClose.displayName = SheetPrimitive.Close.displayName;
 
 export {
 	Sheet,
