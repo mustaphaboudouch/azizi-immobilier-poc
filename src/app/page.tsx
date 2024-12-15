@@ -124,11 +124,13 @@ const Page = () => {
 			<h1>Azizi Immobilier POC</h1>
 			<h1>Selected House : {selectedHouseId}</h1>
 
-			<Svg
-				houses={houses}
-				selectedHouseId={selectedHouseId}
-				onSelectHouse={onSelectHouse}
-			/>
+			<div className='p-20'>
+				<Svg
+					houses={houses}
+					selectedHouseId={selectedHouseId}
+					onSelectHouse={onSelectHouse}
+				/>
+			</div>
 
 			<Sheet
 				open={!!selectedHouseId}
