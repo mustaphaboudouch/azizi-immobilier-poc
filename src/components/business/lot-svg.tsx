@@ -10,7 +10,7 @@ type SvgProps = {
 	onSelectHouse: (id: number) => void;
 };
 
-const Svg = ({ houses, selectedHouseId, onSelectHouse }: SvgProps) => {
+const LotSvg = ({ houses, selectedHouseId, onSelectHouse }: SvgProps) => {
 	return (
 		<div className='w-[600px] border border-black'>
 			<svg
@@ -20,10 +20,9 @@ const Svg = ({ houses, selectedHouseId, onSelectHouse }: SvgProps) => {
 				width='100%'
 				height='100%'
 				preserveAspectRatio='xMidYMid meet'
-				fill='none'
 			>
 				<rect width='1284' height='1198' fill='url(#pattern0_14_2)' />
-				<g id='houses'>
+				<g>
 					{houses.map(({ id, path }) => (
 						<path
 							key={id}
@@ -31,9 +30,7 @@ const Svg = ({ houses, selectedHouseId, onSelectHouse }: SvgProps) => {
 							d={path}
 							className={cn(
 								'cursor-pointer stroke-[3px] stroke-black fill-white hover:fill-red-200',
-								{
-									'stroke-red-800 fill-red-200': id === selectedHouseId,
-								},
+								{ 'stroke-red-800 fill-red-200': id === selectedHouseId },
 							)}
 							onClick={() => onSelectHouse(id)}
 						/>
@@ -41,7 +38,7 @@ const Svg = ({ houses, selectedHouseId, onSelectHouse }: SvgProps) => {
 					{/* to put selected path in front of other paths */}
 					{selectedHouseId && <use xlinkHref={`#${selectedHouseId}`} />}
 				</g>
-				<g id='numbers' className='pointer-events-none'>
+				<g className='pointer-events-none'>
 					<path
 						d='M1000.11 962.297V965H984.969C984.948 964.323 985.057 963.672 985.297 963.047C985.682 962.016 986.297 961 987.141 960C987.995 959 989.224 957.844 990.828 956.531C993.318 954.49 995 952.875 995.875 951.688C996.75 950.49 997.188 949.359 997.188 948.297C997.188 947.182 996.786 946.245 995.984 945.484C995.193 944.714 994.156 944.328 992.875 944.328C991.521 944.328 990.438 944.734 989.625 945.547C988.812 946.359 988.401 947.484 988.391 948.922L985.5 948.625C985.698 946.469 986.443 944.828 987.734 943.703C989.026 942.568 990.76 942 992.938 942C995.135 942 996.875 942.609 998.156 943.828C999.438 945.047 1000.08 946.557 1000.08 948.359C1000.08 949.276 999.891 950.177 999.516 951.062C999.141 951.948 998.516 952.88 997.641 953.859C996.776 954.839 995.333 956.182 993.312 957.891C991.625 959.307 990.542 960.271 990.062 960.781C989.583 961.281 989.188 961.786 988.875 962.297H1000.11ZM1003.33 945.094V942.391H1018.16V944.578C1016.7 946.13 1015.25 948.193 1013.81 950.766C1012.39 953.339 1011.28 955.984 1010.5 958.703C1009.94 960.62 1009.58 962.719 1009.42 965H1006.53C1006.56 963.198 1006.92 961.021 1007.59 958.469C1008.27 955.917 1009.24 953.458 1010.5 951.094C1011.77 948.719 1013.12 946.719 1014.55 945.094H1003.33Z'
 						fill='black'
@@ -159,4 +156,4 @@ const Svg = ({ houses, selectedHouseId, onSelectHouse }: SvgProps) => {
 	);
 };
 
-export { Svg };
+export { LotSvg };

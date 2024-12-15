@@ -2,16 +2,9 @@
 
 import * as React from 'react';
 
-import {
-	Sheet,
-	SheetClose,
-	SheetContent,
-	SheetDescription,
-	SheetHeader,
-	SheetTitle,
-} from '@/components/ui/sheet';
-import { Svg } from '@/components/business/svg';
 import { type House } from '@/types';
+import { LotSvg } from '@/components/business/lot-svg';
+import { FormSheet } from '@/components/business/form-sheet';
 
 const INITIAL_HOUSES = [
 	{
@@ -114,42 +107,25 @@ const Page = () => {
 		null,
 	);
 
-	function onSelectHouse(id: number) {
-		setSelectedHouseId(id);
-		console.log('HOUSE SELECTED : ', id);
-	}
-
 	return (
-		<div>
+		<main>
 			<h1>Azizi Immobilier POC</h1>
-			<h1>Selected House : {selectedHouseId}</h1>
 
 			<div className='p-20'>
-				<Svg
+				<LotSvg
 					houses={houses}
 					selectedHouseId={selectedHouseId}
-					onSelectHouse={onSelectHouse}
+					onSelectHouse={(id) => setSelectedHouseId(id)}
 				/>
 			</div>
 
-			<Sheet
+			<FormSheet
 				open={!!selectedHouseId}
 				onOpenChange={(open) => {
 					if (!open) setSelectedHouseId(null);
 				}}
-			>
-				<SheetContent>
-					<SheetClose />
-					<SheetHeader>
-						<SheetTitle>Are you absolutely sure?</SheetTitle>
-						<SheetDescription>
-							This action cannot be undone. This will permanently delete your
-							account and remove your data from our servers.
-						</SheetDescription>
-					</SheetHeader>
-				</SheetContent>
-			</Sheet>
-		</div>
+			/>
+		</main>
 	);
 };
 
