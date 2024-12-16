@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { type House } from '@/types';
-import { cn } from '@/lib/utils';
+import { HouseSvg } from '@/components/business/house-svg';
 
 type SvgProps = {
 	houses: House[];
@@ -23,16 +23,12 @@ const LotSvg = ({ houses, selectedHouseId, onSelectHouse }: SvgProps) => {
 			>
 				<rect width='1284' height='1198' fill='url(#pattern0_14_2)' />
 				<g>
-					{houses.map(({ id, path }) => (
-						<path
-							key={id}
-							id={id.toString()}
-							d={path}
-							className={cn(
-								'cursor-pointer stroke-[3px] stroke-black fill-white hover:fill-red-200',
-								{ 'stroke-red-800 fill-red-200': id === selectedHouseId },
-							)}
-							onClick={() => onSelectHouse(id)}
+					{houses.map((house, index) => (
+						<HouseSvg
+							key={index}
+							house={house}
+							selectedHouseId={selectedHouseId}
+							onSelectHouse={onSelectHouse}
 						/>
 					))}
 					{/* to put selected path in front of other paths */}
