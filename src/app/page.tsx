@@ -1,12 +1,12 @@
 'use client';
 
 import * as React from 'react';
+import { z } from 'zod';
 import { type House } from '@/types';
 import { LotSvg } from '@/components/business/lot-svg';
 import { HouseSheet } from '@/components/business/house-sheet';
 import { formSchema, HouseForm } from '@/components/business/house-form';
 import { HouseSvgList } from '@/components/business/house-svg-list';
-import { z } from 'zod';
 
 const INITIAL_HOUSES = [
 	{
@@ -115,9 +115,8 @@ const Page = () => {
 	}
 
 	return (
-		<main>
-			<h1>Azizi Immobilier POC</h1>
-
+		<main className='container max-w-2xl mx-auto px-4 py-10'>
+			<h1 className='text-3xl font-bold mb-4'>Azizi Immobilier - DEMO</h1>
 			<LotSvg>
 				<HouseSvgList
 					houses={houses}
@@ -125,7 +124,6 @@ const Page = () => {
 					onSelectHouse={(id) => setSelectedHouseId(id)}
 				/>
 			</LotSvg>
-
 			<HouseSheet
 				open={!!selectedHouseId}
 				onOpenChange={(open) => {

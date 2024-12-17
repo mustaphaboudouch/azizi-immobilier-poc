@@ -8,7 +8,7 @@ type LotSvgProps = {
 
 const LotSvg = ({ children }: LotSvgProps) => {
 	return (
-		<div className='w-[600px] border border-black'>
+		<div className='w-full rounded-xl overflow-hidden shadow-sm border border-gray-200'>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
 				viewBox='64 42 1150 1102' // remove extra strokes

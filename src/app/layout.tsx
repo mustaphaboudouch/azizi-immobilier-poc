@@ -25,7 +25,7 @@ const Layout = ({ children }: LayoutProps) => {
 	return (
 		<html lang='en'>
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+				className={`text-black bg-gray-100 ${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
 				{children}
 			</body>
