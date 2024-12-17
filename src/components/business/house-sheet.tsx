@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import {
 	Sheet,
 	SheetClose,
@@ -9,12 +8,13 @@ import {
 	SheetTitle,
 } from '@/components/ui/sheet';
 
-type FormSheetProps = {
+type HouseSheetProps = {
+	children: React.ReactNode;
 	open: boolean;
 	onOpenChange: (open: boolean) => void;
 };
 
-const FormSheet = ({ open, onOpenChange }: FormSheetProps) => {
+const HouseSheet = ({ children, open, onOpenChange }: HouseSheetProps) => {
 	return (
 		<Sheet open={open} onOpenChange={onOpenChange}>
 			<SheetContent>
@@ -26,9 +26,10 @@ const FormSheet = ({ open, onOpenChange }: FormSheetProps) => {
 						account and remove your data from our servers.
 					</SheetDescription>
 				</SheetHeader>
+				{children}
 			</SheetContent>
 		</Sheet>
 	);
 };
 
-export { FormSheet };
+export { HouseSheet };

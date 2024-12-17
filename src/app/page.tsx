@@ -1,10 +1,11 @@
 'use client';
 
 import * as React from 'react';
-
 import { type House } from '@/types';
 import { LotSvg } from '@/components/business/lot-svg';
-import { FormSheet } from '@/components/business/form-sheet';
+import { HouseSheet } from '@/components/business/house-sheet';
+import { HouseForm } from '@/components/business/house-form';
+import { HouseSvgList } from '@/components/business/house-svg-list';
 
 const INITIAL_HOUSES = [
 	{
@@ -112,19 +113,23 @@ const Page = () => {
 			<h1>Azizi Immobilier POC</h1>
 
 			<div className='p-20'>
-				<LotSvg
-					houses={houses}
-					selectedHouseId={selectedHouseId}
-					onSelectHouse={(id) => setSelectedHouseId(id)}
-				/>
+				<LotSvg>
+					<HouseSvgList
+						houses={houses}
+						selectedHouseId={selectedHouseId}
+						onSelectHouse={(id) => setSelectedHouseId(id)}
+					/>
+				</LotSvg>
 			</div>
 
-			<FormSheet
+			<HouseSheet
 				open={!!selectedHouseId}
 				onOpenChange={(open) => {
 					if (!open) setSelectedHouseId(null);
 				}}
-			/>
+			>
+				<HouseForm />
+			</HouseSheet>
 		</main>
 	);
 };
