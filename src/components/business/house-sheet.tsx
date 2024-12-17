@@ -17,14 +17,11 @@ type HouseSheetProps = {
 const HouseSheet = ({ children, open, onOpenChange }: HouseSheetProps) => {
 	return (
 		<Sheet open={open} onOpenChange={onOpenChange}>
-			<SheetContent>
+			<SheetContent className='py-14'>
 				<SheetClose />
-				<SheetHeader>
-					<SheetTitle>Are you absolutely sure?</SheetTitle>
-					<SheetDescription>
-						This action cannot be undone. This will permanently delete your
-						account and remove your data from our servers.
-					</SheetDescription>
+				<SheetHeader className='hidden'>
+					<SheetTitle />
+					<SheetDescription />
 				</SheetHeader>
 				{children}
 			</SheetContent>

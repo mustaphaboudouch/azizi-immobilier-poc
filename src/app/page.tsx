@@ -4,8 +4,9 @@ import * as React from 'react';
 import { type House } from '@/types';
 import { LotSvg } from '@/components/business/lot-svg';
 import { HouseSheet } from '@/components/business/house-sheet';
-import { HouseForm } from '@/components/business/house-form';
+import { formSchema, HouseForm } from '@/components/business/house-form';
 import { HouseSvgList } from '@/components/business/house-svg-list';
+import { z } from 'zod';
 
 const INITIAL_HOUSES = [
 	{
@@ -108,19 +109,22 @@ const Page = () => {
 		null,
 	);
 
+	function onSubmit(values: z.infer<typeof formSchema>) {
+		if (!selectedHouseId) return;
+		console.log(values);
+	}
+
 	return (
 		<main>
 			<h1>Azizi Immobilier POC</h1>
 
-			<div className='p-20'>
-				<LotSvg>
-					<HouseSvgList
-						houses={houses}
-						selectedHouseId={selectedHouseId}
-						onSelectHouse={(id) => setSelectedHouseId(id)}
-					/>
-				</LotSvg>
-			</div>
+			<LotSvg>
+				<HouseSvgList
+					houses={houses}
+					selectedHouseId={selectedHouseId}
+					onSelectHouse={(id) => setSelectedHouseId(id)}
+				/>
+			</LotSvg>
 
 			<HouseSheet
 				open={!!selectedHouseId}
@@ -128,7 +132,10 @@ const Page = () => {
 					if (!open) setSelectedHouseId(null);
 				}}
 			>
-				<HouseForm />
+				<HouseForm
+					onSubmit={onSubmit}
+					onCancel={() => setSelectedHouseId(null)}
+				/>
 			</HouseSheet>
 		</main>
 	);

@@ -1,5 +1,11 @@
 type HouseData = {
-	name: string;
+	reference: string;
+	surfaceArea: number;
+	overlook: boolean;
+	isFurnished: boolean;
+	price: number; // per m2
+	housingTax: number;
+	applicationFees: number;
 };
 
 type House = {

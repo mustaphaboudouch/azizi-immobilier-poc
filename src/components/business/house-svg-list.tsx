@@ -37,12 +37,35 @@ const HouseSvgList = ({
 								onClick={() => onSelectHouse(house.id)}
 							/>
 						</TooltipTrigger>
-						<TooltipContent className='w-96'>
-							<p>
-								Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam
-								consequatur assumenda error ducimus sint laborum itaque!
-								Perferendis dolorem commodi ad.
-							</p>
+						<TooltipContent>
+							<table>
+								<tbody>
+									<tr>
+										<th className='text-left pr-2'>Réf</th>
+										<td>REF-2024-001</td>
+									</tr>
+									<tr>
+										<th className='text-left pr-2'>Superficie</th>
+										<td>
+											135 m<sup>2</sup>
+										</td>
+									</tr>
+									<tr>
+										<th className='text-left pr-2'>
+											Prix (par m<sup>2</sup>)
+										</th>
+										<td>1000.2 DH</td>
+									</tr>
+									<tr>
+										<th className='text-left pr-2'>Vise-à-vis</th>
+										<td>Oui</td>
+									</tr>
+									<tr>
+										<th className='text-left pr-2'>Meublé</th>
+										<td>Non</td>
+									</tr>
+								</tbody>
+							</table>
 						</TooltipContent>
 					</Tooltip>
 				</TooltipProvider>
